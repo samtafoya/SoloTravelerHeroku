@@ -22,6 +22,13 @@ app.get('/api/passwords', (req, res) => {
   console.log(`Sent ${count} passwords`);
 });
 
+var urlGetHello = "/api/hello";
+app.get(urlGetHello, (req, res) => {
+    var str = urlGetHello + " (GET) " + "just called";
+    console.log(str);
+    res.send({ express: str });
+});
+
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get('*', (req, res) => {

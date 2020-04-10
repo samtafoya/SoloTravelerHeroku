@@ -3,11 +3,12 @@ import './App.css';
 
 class App extends Component {
   // Initialize state
-  state = { passwords: [] }
+  state = { passwords: [], hello: 'hi' }
 
   // Fetch passwords after first mount
   componentDidMount() {
     this.getPasswords();
+    this.getHello();
   }
 
   getPasswords = () => {
@@ -15,6 +16,13 @@ class App extends Component {
     fetch('/api/passwords')
       .then(res => res.json())
       .then(passwords => this.setState({ passwords }));
+  }
+
+  getPasswords = () => {
+    // Get the passwords and store them in state
+    fetch('/api/getHello')
+      .then(res => res.json())
+      .then(hello => this.setState({ hello }));
   }
 
   render() {
@@ -44,6 +52,7 @@ class App extends Component {
               onClick={this.getPasswords}>
               Get More
             </button>
+            <p>{hello}</p>
           </div>
         ) : (
           // Render a helpful message otherwise
