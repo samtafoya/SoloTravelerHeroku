@@ -22,7 +22,7 @@ class App extends Component {
     // Get the passwords and store them in state
     fetch('/api/getHello')
       .then(res => res.json())
-      .then(hello => this.setState({ hello }));
+      .then(this.setState({hello: "hello"}));
   }
 
   render() {
