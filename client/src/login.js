@@ -6,7 +6,8 @@ class Login extends Component {
     constructor() {
         super();
         this.state = {
-            hello: 'hi'
+            hello: 'hi',
+            success: ''
         };
     }
 
@@ -17,6 +18,16 @@ class Login extends Component {
             .then(this.setState({ hello: "hello" }));
     }
 
+    handleSubmit = () => {
+        let thing =
+        <div>
+          <p>Success!</p>
+        </div>
+
+      this.setState({ success: thing });
+
+    }
+
     render() {
         return (
             <div>
@@ -25,7 +36,7 @@ class Login extends Component {
                     <div>
                         <h1 class="testH">Login</h1>
                     </div>
-                    <form>
+                    <form onSubmit={this.handleSubmit}>
                         <p>
                             <strong>Login:</strong>
                         </p>
@@ -38,6 +49,7 @@ class Login extends Component {
                         <p>Hiking, Swimming, Biking, Socializing, Relaxing, Alone, Beaches, Mountains, City</p>
                         <input type="text" placeholder="trait"/>
                         <button type="submit">login</button>
+                        {this.state.success}
                     </form>
                 </div>
             </div>
