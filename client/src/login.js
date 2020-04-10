@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
 class Login extends Component {
-    
+
     constructor() {
         super();
         this.state = {
             hello: 'hi'
         };
-    } 
+    }
 
     getHello = () => {
         // Get the passwords and store them in state
@@ -19,9 +19,26 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <h1>Test Page!</h1>
-                <button onClick={this.getHello}>call get hello</button>
-                {this.state.hello}
+                <h1>Login Page!</h1>
+                <div className="Trait">
+                    <div>
+                        <h1 class="testH">Login</h1>
+                    </div>
+                    <form>
+                        <p>
+                            <strong>Login:</strong>
+                        </p>
+                        <input type="text" placeholder="First Name"/>
+                        <input type="text" placeholder="Last Name"/>
+                        <input type="text" placeholder="Age"/>
+                        <input type="email" placeholder="email"/>
+                        <input type="text" placeholder="password"/>
+                        <p><strong>Pick a word you relate to the most! (exactly as shown to help with matching)</strong></p>
+                        <p>Hiking, Swimming, Biking, Socializing, Relaxing, Alone, Beaches, Mountains, City</p>
+                        <input type="text" placeholder="trait"/>
+                        <button type="submit">login</button>
+                    </form>
+                </div>
             </div>
         );
     }
