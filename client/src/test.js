@@ -11,7 +11,7 @@ class Test extends Component {
 
     getHello = () => {
         // Get the passwords and store them in state
-        fetch('/api/getHello')
+        fetch('http://ec2-54-183-192-99.us-west-1.compute.amazonaws.com:3000/api/allposts')
             .then(res => res.json())
             .then(this.setState({ hello: "hello" }));
     }
