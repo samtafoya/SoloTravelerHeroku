@@ -22,7 +22,7 @@ app.get('/api/passwords', (req, res) => {
   console.log(`Sent ${count} passwords`);
 });
 
-var urlGetHello = "/api/hello";
+var urlGetHello = "http://ec2-54-183-192-99.us-west-1.compute.amazonaws.com:3000/api/allposts";
 app.get(urlGetHello, (req, res) => {
     var str = urlGetHello + " (GET) " + "just called";
     console.log(str);
