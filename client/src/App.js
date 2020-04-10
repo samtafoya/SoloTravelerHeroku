@@ -52,7 +52,7 @@ class App extends Component {
               onClick={this.getPasswords}>
               Get More
             </button>
-            <p>{hello}</p>
+            <p>{this.state.hello}</p>
           </div>
         ) : (
           // Render a helpful message otherwise
