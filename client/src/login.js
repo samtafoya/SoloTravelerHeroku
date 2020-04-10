@@ -36,7 +36,7 @@ class Login extends Component {
                     <div>
                         <h1 class="testH">Login</h1>
                     </div>
-                    <form onSubmit={this.handleSubmit}>
+                    <form>
                         <p>
                             <strong>Login:</strong>
                         </p>
@@ -48,9 +48,9 @@ class Login extends Component {
                         <p><strong>Pick a word you relate to the most! (exactly as shown to help with matching)</strong></p>
                         <p>Hiking, Swimming, Biking, Socializing, Relaxing, Alone, Beaches, Mountains, City</p>
                         <input type="text" placeholder="trait"/>
-                        <button type="submit">login</button>
+                        <button type="submit" onClick={this.handleSubmit}>login</button>
+                        {this.state.success}
                     </form>
-                    {this.state.success}
                 </div>
             </div>
         );
