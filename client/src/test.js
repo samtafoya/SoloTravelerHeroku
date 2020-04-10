@@ -14,7 +14,9 @@ class Test extends Component {
         // Get the passwords and store them in state
         fetch('http://ec2-54-183-192-99.us-west-1.compute.amazonaws.com:3000/api/allposts')
             .then(res => res.json())
-            .then(test => this.setState({ test }));
+            .then(test => this.setState({ test }))
+            .then(console.alert("test " + this.state.test))
+            .then(console.alert("state " + this.state));
     }
 
     render() {
@@ -25,7 +27,7 @@ class Test extends Component {
             <div>
                 <h1>Test Page!</h1>
                 <button onClick={this.getHello}>call get hello</button>
-                {test[0]}
+               
             </div>
         );
     }
