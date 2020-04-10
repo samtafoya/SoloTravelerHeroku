@@ -8,7 +8,7 @@ class App extends Component {
   // Fetch passwords after first mount
   componentDidMount() {
     this.getPasswords();
-    this.getHello();
+    //this.getHello();
   }
 
   getPasswords = () => {
