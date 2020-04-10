@@ -18,7 +18,7 @@ class App extends Component {
       .then(passwords => this.setState({ passwords }));
   }
 
-  getPasswords = () => {
+  getHello = () => {
     // Get the passwords and store them in state
     fetch('/api/getHello')
       .then(res => res.json())
