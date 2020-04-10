@@ -4,8 +4,6 @@ import App from './App';
 import Test from './test';
 import * as serviceWorker from './serviceWorker';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
-import './css/index.css'
-import App from './App'
 
 const routing = (
   <Router>
