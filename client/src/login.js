@@ -49,8 +49,8 @@ class Login extends Component {
                         <p>Hiking, Swimming, Biking, Socializing, Relaxing, Alone, Beaches, Mountains, City</p>
                         <input type="text" placeholder="trait"/>
                         <button type="submit">login</button>
-                        {this.state.success}
                     </form>
+                    {this.state.success}
                 </div>
             </div>
         );
