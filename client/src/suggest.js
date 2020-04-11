@@ -17,6 +17,8 @@ class Suggest extends Component {
     componentDidMount = () =>{
         this.callApi()
         this.callApiTwo()
+        this.callApi()
+        this.callApiTwo()
     }
 
     // Implementation of the "callApi" function called above

@@ -167,11 +167,6 @@ class Test extends Component {
                 <div class="card-body">
                     <p class="card-text">{this.state.textAreaVal}</p>
                 </div>
-                <div class="card-footer">
-                    <a href="#" class="card-link" onClick={this.clicked}><i class="fa fa-gittip"></i> Like</a>
-                    <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-                    <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
-                </div>
             </div>);
 
         this.setState({ postList: newList });
