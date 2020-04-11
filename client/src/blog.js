@@ -13,7 +13,9 @@ class Test extends Component {
             postList: [],
             success: '',
             blogText: "",
-            textAreaVal: ""
+            textAreaVal: "",
+            userV: '',
+            nameV: ''
         };
     }
 
@@ -47,7 +49,7 @@ class Test extends Component {
                         } else if (i == 2) {
                             nameA.push(subList[i].substring(subList[i].indexOf(":") + 2, subList[i].length - 1));
                         } else if (i == 3) {
-                            bodyA.push(subList[i].substring(subList[i].indexOf(":") + 2, subList[i].length - 2));
+                            bodyA.push(subList[i].substring(subList[i].indexOf(":") + 2, subList[i].length - 1));
                         }
                     }
                 }
@@ -97,7 +99,8 @@ class Test extends Component {
     callApi = async () => {
         console.log("inside callApi()");
 
-        var urlGetUsers = "http://ec2-54-183-192-99.us-west-1.compute.amazonaws.com:3000/api/allposts";
+        var urlGetUsers = "http://ec2-13-56-181-190.us-west-1.compute.amazonaws.com:3000/api/allposts";
+        
         const responseT = await fetch(urlGetUsers);
         const body = await responseT.json();
         //debugger;
@@ -116,11 +119,13 @@ class Test extends Component {
         console.log("Inside Blog.handleSubmit")
         e.preventDefault();
 
-        /*
-        var submitUrl = "/api/blog";
+        
+        var submitUrl = "http://ec2-13-56-181-190.us-west-1.compute.amazonaws.com:3000/api/blog";
+
+        console.log("nameval " + localStorage.getItem('nameVal'));
 
         var data = {
-            blogText: this.state.blogText,
+            blogText: this.state.textAreaVal,
             userV: localStorage.getItem('emailVal'),
             nameV: localStorage.getItem('nameVal')
         };
@@ -135,11 +140,11 @@ class Test extends Component {
 
             body: JSON.stringify(data),
         });
-        */
+        
+        console.log("nameval " + localStorage.getItem('nameVal'));
+        this.setState({ blogText: this.state.textAreaVal });
 
-        //this.setState({ blogText: this.state.textAreaVal });
-
-        //const body = await response.text();
+        const body = await response.text();
 
         this.setState({ blogText: this.state.textAreaVal });
 
@@ -218,7 +223,7 @@ class Test extends Component {
                 </div>
 
                 {this.state.postList.reverse()}
-                {allList}
+                {allList.reverse()}
 
             </div>
         );
