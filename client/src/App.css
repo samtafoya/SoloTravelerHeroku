@@ -1,5 +1,41 @@
 .App {
   text-align: center;
+  margin-top: 15px;
+  color: blue;
+  font-size: 50px;
+  font-family: fantasy;
+}
+
+.test {
+  font-family: "Lucida Console","Lucida Sans Typewriter",monaco,"Bitstream Vera Sans Mono",monospace;
+  text-align: center;
+  margin-top: 15px;
+  color: white;
+  font-style: oblique;
+  text-shadow: 2px 2px 5px blueviolet;
+  font-size: 50px;
+}
+
+.headingTwo {
+  font-family: "Lucida Console","Lucida Sans Typewriter",monaco,"Bitstream Vera Sans Mono",monospace;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  color: black;
+  font-size: 25px;
+}
+
+.smaller {
+  font-family: "Lucida Console","Lucida Sans Typewriter",monaco,"Bitstream Vera Sans Mono",monospace;
+  text-align: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  color: blueviolet;
+  font-size: 15px;
+}
+
+.all {
+  background-color: #e0ccff;
 }
 
 .App-logo {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './blog.css';
+import './App.css';
 
 class Test extends Component {
 
@@ -15,7 +16,8 @@ class Test extends Component {
             blogText: "",
             textAreaVal: "",
             userV: '',
-            nameV: ''
+            nameV: '',
+            numberOfLikes: ''
         };
     }
 
@@ -80,13 +82,14 @@ class Test extends Component {
                             <div class="card-body">
                                 <p class="card-text">{this.state.bodyArr[i]}</p>
                             </div>
-                            <div class="card-footer">
-                                <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-                                <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-                                <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
-                            </div>
                         </div>);
 
+                    /*
+                        <div class="card-footer">
+                                <a href="#" class="card-link" onClick={this.clicked}><i class="fa fa-gittip"></i> Contact this user! </a>
+                                <a href="#" class="card-link"><i class="fa fa-gittip"></i>{localStorage.getItem('liked  ')}</a>
+                        </div>
+                    */
                     this.setState({ allList: nList });
                 }
             })
@@ -100,7 +103,7 @@ class Test extends Component {
         console.log("inside callApi()");
 
         var urlGetUsers = "http://ec2-13-56-181-190.us-west-1.compute.amazonaws.com:3000/api/allposts";
-        
+
         const responseT = await fetch(urlGetUsers);
         const body = await responseT.json();
         //debugger;
@@ -119,7 +122,7 @@ class Test extends Component {
         console.log("Inside Blog.handleSubmit")
         e.preventDefault();
 
-        
+
         var submitUrl = "http://ec2-13-56-181-190.us-west-1.compute.amazonaws.com:3000/api/blog";
 
         console.log("nameval " + localStorage.getItem('nameVal'));
@@ -140,7 +143,7 @@ class Test extends Component {
 
             body: JSON.stringify(data),
         });
-        
+
         console.log("nameval " + localStorage.getItem('nameVal'));
         this.setState({ blogText: this.state.textAreaVal });
 
@@ -165,7 +168,7 @@ class Test extends Component {
                     <p class="card-text">{this.state.textAreaVal}</p>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                    <a href="#" class="card-link" onClick={this.clicked}><i class="fa fa-gittip"></i> Like</a>
                     <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
                     <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
                 </div>
@@ -174,6 +177,14 @@ class Test extends Component {
         this.setState({ postList: newList });
 
     };
+
+    clicked = () => {
+        console.log("clicked");
+        this.setState({numberOfLikes: 'glad you liked me!'});
+        this.state.numberOfLikes = 'glad you liked me!';
+        console.log(this.state.numberOfLikes);
+        localStorage.setItem('liked', "true");
+    }
 
     // updates the blog post
     handleChange = (e) => {
@@ -191,17 +202,11 @@ class Test extends Component {
         return (
             <div>
                 <div>
-                    <h1>MY FEED</h1>
+                    <h1 class="test">Recent Posts</h1>
                 </div>
 
-                <div class="card-header">
-                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab"
-                                aria-controls="posts" aria-selected="true">Make
-            a publication</a>
-                        </li>
-                    </ul>
+                <div >
+                    <a class="cardHead"> Make a publication</a>
                 </div>
 
                 <div class="tab-content" id="myTabContent">

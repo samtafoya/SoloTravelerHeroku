@@ -14,6 +14,11 @@ class Suggest extends Component {
         this.findUser = this.findUser.bind(this);
     }
 
+    componentDidMount = () =>{
+        this.callApi()
+        this.callApiTwo()
+    }
+
     // Implementation of the "callApi" function called above
     callApi = async () => {
         console.log("inside callApi()");
@@ -149,15 +154,17 @@ class Suggest extends Component {
 
         let newList = this.state.userToPrint;
         console.log(this.state.userToPrint[2]);
-        return (<div>
-            <button onClick={this.handleSubmit}>get users</button>
-            <p> Here is a list of similar users:  </p>
+        return (
+        <div>
+            <h1 class="test"> Get Suggested Users</h1>
+            <h2 class="headingTwo">Looking to travel with someone? Press the button below to find similar users and shoot them an email!</h2>
+            <button class="btn-primary" onClick={this.handleSubmit}>get users</button>
+            <p class="headingTwo"> Here is a list of similar users:  </p>
             <div>
                 {newList.map(function (u, idx) {
-                    return (<p key={idx}>{u}</p>)
+                    return (<p class="smaller" key={idx}>{u}</p>)
                 })}
             </div>
-            <button onClick={this.getLocal}>Get</button>
         </div>)
     }
 

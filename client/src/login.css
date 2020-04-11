@@ -9,6 +9,18 @@
   h1 {
     text-align: center;
   }
+
+  .btn-test {
+    color: #fff;
+    background-color: blueviolet;
+    border-color: blueviolet;
+  }
+
+  .center-div {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
   
   form {
     max-width: 500px;
@@ -55,6 +67,6 @@
   
   button:hover {
     cursor: pointer;
-    background-color: white;
-    color: rgb(70, 153, 179);
+    background-color: blueviolet;
+    color: white;
   } 

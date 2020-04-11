@@ -5,6 +5,23 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+ .cardHead {
+    font-family: "Lucida Console","Lucida Sans Typewriter",monaco,"Bitstream Vera Sans Mono",monospace;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-left: 15px;
+    margin-top: 30px;
+    color: black;
+    font-size: 25px;
+}
+
+.board {
+    border-width: 5px;
+    border-color: blueviolet;
+    margin-top: 30px;
+    display: none
+}
+
  :root {
     --blue: #007bff;
     --indigo: #6610f2;
@@ -2499,14 +2516,14 @@ fieldset:disabled a.btn {
 
 .btn-primary {
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff
+    background-color: blueviolet;
+    border-color: blueviolet
 }
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #0069d9;
-    border-color: #0062cc
+    background-color: blueviolet;
+    border-color: blueviolet
 }
 
 .btn-primary.focus,
@@ -2517,16 +2534,16 @@ fieldset:disabled a.btn {
 .btn-primary.disabled,
 .btn-primary:disabled {
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff
+    background-color: blueviolet;
+    border-color: blueviolet
 }
 
 .btn-primary:not(:disabled):not(.disabled).active,
 .btn-primary:not(:disabled):not(.disabled):active,
 .show>.btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #0062cc;
-    border-color: #005cbf
+    background-color: blueviolet;
+    border-color: blueviolet
 }
 
 .btn-primary:not(:disabled):not(.disabled).active:focus,
@@ -3444,6 +3461,7 @@ input[type=submit].btn-block {
 }
 
 .btn-toolbar {
+    margin-bottom: 20px;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
@@ -4131,6 +4149,9 @@ input[type=submit].btn-block {
 }
 
 .tab-content>.tab-pane {
+    border-width: 5px;
+    border-color: blueviolet;
+    margin-top: 10px;
     display: none
 }
 

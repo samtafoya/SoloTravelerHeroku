@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './login.css';
+import './App.css';
 
 class Login extends Component {
     // State for passing data around
@@ -18,8 +19,17 @@ class Login extends Component {
             success: '',
             isLoggedin: false,
             currentUser: '',
-            trait: ''
+            trait: '',
+            testRes: []
         };
+    }
+
+    componentDidMount = () => {
+        let start =
+            <div>
+                <p class="smaller">Hi!</p>
+            </div>;
+        this.setState({testRes: start});
     }
 
     // Implementation of the "callApi" function 
@@ -163,22 +173,28 @@ class Login extends Component {
         )
         let thing =
             <div>
-                <p>Success!</p>
+                <p class="headingTwo">You are successfully logged in!</p>
             </div>
 
         this.setState({ success: thing });
     }
 
-    callSammi = () => (
-        console.log("callSammi")
-    )
+    callSammi = () => {
+        let hey =
+            <div>
+                <p class="smaller">Bye!</p>
+            </div>;
+        this.setState({ testRes: hey });
+        console.log("hlelo");
+    }
 
     render() {
         return (
             <div className="Trait">
                 <div>
-                    <h1 class="testH">Login</h1>
+                    <h1 class="test">Login</h1>
                 </div>
+                {this.state.success}
                 <form>
                     <p>
                         <strong>Login:</strong>
@@ -192,9 +208,7 @@ class Login extends Component {
                     <p>Hiking, Swimming, Biking, Socializing, Relaxing, Alone, Beaches, Mountains, City</p>
                     <input type="text" placeholder="trait" value={this.state.trait} onChange={e => this.setState({ trait: e.target.value })} />
                 </form>
-                <button onClick={this.test}>Test</button>
-
-                {this.state.success}
+                <div class="center-div"><button class="btn-test" onClick={this.test}>Login!</button></div>
             </div>
         );
     }

@@ -57,7 +57,7 @@ app.post(urlGetLogin, function (req, res) {
     console.log(pass_word);
 
     var sql = 'INSERT INTO account (email, pass_word, first_name, last_name, age, main_trait) VALUES (?)';
-    var values = [email, pass_word, req.body.first_name, req.body.last_name, req.body.age, "true"];
+    var values = [email, pass_word, req.body.first_name, req.body.last_name, req.body.age, req.body.trait];
 
     // Do a MySQL query for email.
     var query = mysql.format(sql, [values]);
@@ -222,6 +222,24 @@ app.get(urlGetUsers, (req, res) => {
 
             res.send(JSON.parse(jString));
         });
+});
+
+var urlGetUser = "/api/usersTraits";
+app.get(urlGetUser, (req, res) => {
+    var twoSqlString =  "SELECT main_trait FROM account"
+
+    connection.query(twoSqlString,
+        function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+            }
+
+            console.log('2 The reponse is: ', rows);
+            var jString = JSON.stringify(rows);
+
+            res.send(JSON.parse(jString));
+        }
+    );
 });
 
 /*---------------------------------------------------------------------------*/
