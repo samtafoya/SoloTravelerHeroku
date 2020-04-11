@@ -161,6 +161,12 @@ class Login extends Component {
             //this.callSammi()
             this.testLocal()
         )
+        let thing =
+            <div>
+                <p>Success!</p>
+            </div>
+
+        this.setState({ success: thing });
     }
 
     callSammi = () => (
