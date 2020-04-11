@@ -10,7 +10,10 @@ class Test extends Component {
             userArr: [],
             nameArr: [],
             bodyArr: [],
-            success: ''
+            postList: [],
+            success: '',
+            blogText: "",
+            textAreaVal: ""
         };
     }
 
@@ -109,103 +112,70 @@ class Test extends Component {
         return body;
     };
 
-    ignoreMe = async e => {
-        console.log("Inside Suggest.handleSubmit")
+    handleSubmit = async e => {
+        console.log("Inside Blog.handleSubmit")
         e.preventDefault();
 
-        this.callApi()
-            .then(res => {
-                console.log("Hello: Inside 'handleSubmit.then'" + JSON.stringify(res[2]));
+        /*
+        var submitUrl = "/api/blog";
 
-                let result = "";
-                let resultList = [];
-                let resultListTwo = [];
-                let userA = [];
-                let nameA = [];
-                let bodyA = [];
+        var data = {
+            blogText: this.state.blogText,
+            userV: localStorage.getItem('emailVal'),
+            nameV: localStorage.getItem('nameVal')
+        };
 
-                for (var i in res) {
-                    result = JSON.stringify(res[i]);
-                    let front = result.indexOf("user") + 4;
-                    let tempStr = result.substring(front);
-                    let back = tempStr.indexOf(",") + 1;
-                    let newSub = result.substring(front, back);
-                    resultList.push(newSub + "\n      ");
-                    let subList = result.split(",");
-                    resultListTwo.push(subList[1]);
+        const response = await fetch(submitUrl, {
+            method: 'POST',
 
-                    for (var i in subList) {
-                        if (i == 1) {
-                            userA.push(subList[i].substring(subList[i].indexOf(":") + 2, subList[i].length - 1));
-                        } else if (i == 2) {
-                            nameA.push(subList[i].substring(subList[i].indexOf(":") + 2, subList[i].length - 1));
-                        } else if (i == 3) {
-                            bodyA.push(subList[i].substring(subList[i].indexOf(":") + 2, subList[i].length - 2));
-                        }
-                    }
-                }
+            // need these headers for post
+            headers: {
+                'Content-Type': 'application/json',
+            },
 
-                this.setState({ userArr: userA });
-                console.log(this.state.userArr);
+            body: JSON.stringify(data),
+        });
+        */
 
-                this.setState({ nameArr: nameA });
-                console.log(this.state.nameArr);
+        //this.setState({ blogText: this.state.textAreaVal });
 
-                this.setState({ bodyArr: bodyA });
-                console.log(this.state.bodyArr);
+        //const body = await response.text();
 
-                let nList = [];
-                for (var i in this.state.userArr) {
-                    nList = this.state.allList.concat(
-                        <div key={i} >
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="ml-2">
-                                            <div class="h5 m-0">{this.state.userArr[i]}</div>
-                                            <div class="h7 text-muted">{this.state.nameArr[i]}</div>
-                                        </div>
-                                    </div>
-                                </div>
+        this.setState({ blogText: this.state.textAreaVal });
+
+        // fix key, count isnt working
+        let newList = this.state.postList.concat(
+            <div key={this.state.count} >
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="ml-2">
+                                <div class="h5 m-0">{localStorage.getItem('emailVal')}</div>
+                                <div class="h7 text-muted">{localStorage.getItem('nameVal')}</div>
                             </div>
-                            <div class="card-body">
-                                <p class="card-text">{this.state.bodyArr[i]}</p>
-                            </div>
-                            <div class="card-footer">
-                                <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-                                <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-                                <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
-                            </div>
-                        </div>);
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{this.state.textAreaVal}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                    <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+                    <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+                </div>
+            </div>);
 
-                    this.setState({ allList: nList });
-                }
-            })
-            .catch(err => {
-                console.log("Hello: Inside 'handleSubmit.catch'")
-                console.log(err);
-            });
+        this.setState({ postList: newList });
+
     };
 
-    getHello = async () => {
-        // Get the passwords and store them in state
-        let test = await fetch('http://ec2-54-183-192-99.us-west-1.compute.amazonaws.com:3000/api/allposts');
-        fetch('http://ec2-54-183-192-99.us-west-1.compute.amazonaws.com:3000/api/allposts')
-            .then(res => res.json())
-            .then(test => this.setState({ test }))
-        console.log("testing " + JSON.stringify(this.state));
-        console.log("api " + JSON.stringify(test));
-        debugger;
-    }
-
-    handleSubmit = () => {
-        let thing =
-            <div>
-                <p>Success!</p>
-            </div>
-
-        this.setState({ success: thing });
-
+    // updates the blog post
+    handleChange = (e) => {
+        this.setState({
+            textAreaVal: e.target.value
+        });
+        this.setState({ count: 1 });
     }
 
     render() {
@@ -234,7 +204,7 @@ class Test extends Component {
                         <div class="form-group">
                             <label class="sr-only" for="message">post</label>
                             <textarea class="form-control" id="message" rows="3"
-                                placeholder="What are you thinking?"></textarea>
+                                placeholder="What are you thinking?" value={this.state.textareaVal} onChange={this.handleChange}></textarea>
                         </div>
 
                     </div>
@@ -247,26 +217,12 @@ class Test extends Component {
                     </div>
                 </div>
 
+                {this.state.postList.reverse()}
                 {allList}
 
             </div>
         );
     }
-
-
-    /*
-    render() {
-
-        const { test } = this.state;
-
-        return (
-            <div>
-                <h1>Test Page!</h1>
-                <button onClick={this.getHello}>call get hello</button>
-            </div>
-        );
-    }
-    */
 }
 
 export default Test;
