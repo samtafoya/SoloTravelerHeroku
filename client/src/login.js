@@ -147,6 +147,7 @@ class Login extends Component {
         localStorage.setItem('traitVal', this.state.trait);
         console.log(localStorage.getItem('isLoggedin'));
         console.log("nameval " + localStorage.getItem('nameVal'));
+        //test
     }
 
     test = async e => {
