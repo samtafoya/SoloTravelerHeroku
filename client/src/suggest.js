@@ -14,7 +14,7 @@ class Suggest extends Component {
         this.findUser = this.findUser.bind(this);
     }
 
-    componentDidMount = () =>{
+    componentDidMount = () => {
         this.callApi()
         this.callApiTwo()
     }
@@ -61,58 +61,66 @@ class Suggest extends Component {
         console.log("Inside Suggest.handleSubmit")
         e.preventDefault();
 
-        this.callApi()
-            .then(res => {
-                console.log("Hello: Inside 'handleSubmit.then'");
+        try {
+            this.callApi()
+                .then(res => {
+                    console.log("Hello: Inside 'handleSubmit.then'");
 
-                let result = "";
-                let resultList = [];
+                    let result = "";
+                    let resultList = [];
 
-                for (var i in res) {
-                    result = JSON.stringify(res[i]);
-                    let front = result.indexOf(":") + 2;
-                    let back = result.length - 2;
-                    let newSub = result.substring(front, back);
-                    resultList.push(newSub + "\n      ");
-                }
+                    for (var i in res) {
+                        result = JSON.stringify(res[i]);
+                        let front = result.indexOf(":") + 2;
+                        let back = result.length - 2;
+                        let newSub = result.substring(front, back);
+                        resultList.push(newSub + "\n      ");
+                    }
 
-                this.setState({ userList: resultList });
-                console.log(this.state.userList[0]);
-                //debugger;
-                //this.findUser();
-            })
-            .catch(err => {
-                console.log("Hello: Inside 'handleSubmit.catch'")
-                console.log(err);
-            });
+                    this.setState({ userList: resultList });
+                    console.log(this.state.userList[0]);
+                    //debugger;
+                    //this.findUser();
+                })
+                .catch(err => {
+                    console.log("Hello: Inside 'handleSubmit.catch'")
+                    console.log(err);
+                });
+        } catch {
+            console.log("API not working");
+        }
 
-        this.callApiTwo()
-            .then(res => {
-                console.log("Hello: Inside 'handleSubmitTwo.then'");
+        try {
+            this.callApiTwo()
+                .then(res => {
+                    console.log("Hello: Inside 'handleSubmitTwo.then'");
 
-                let result = "";
-                let resultList = [];
+                    let result = "";
+                    let resultList = [];
 
-                for (var i in res) {
-                    result = JSON.stringify(res[i]);
-                    console.log(res[i]);
-                    let front = result.indexOf(":") + 2;
-                    let back = result.length - 2;
-                    let newSub = result.substring(front, back);
-                    resultList.push(newSub + "\n      ");
-                }
+                    for (var i in res) {
+                        result = JSON.stringify(res[i]);
+                        console.log(res[i]);
+                        let front = result.indexOf(":") + 2;
+                        let back = result.length - 2;
+                        let newSub = result.substring(front, back);
+                        resultList.push(newSub + "\n      ");
+                    }
 
-                console.log("test trait " + resultList[0]);
+                    console.log("test trait " + resultList[0]);
 
-                this.setState({ traitList: resultList });
-                console.log("ello govner " + this.state.traitList[5]);
-                //debugger;
-                this.findUser();
-            })
-            .catch(err => {
-                console.log("Hello: Inside 'handleSubmit.catch'")
-                console.log(err);
-            });
+                    this.setState({ traitList: resultList });
+                    console.log("ello govner " + this.state.traitList[5]);
+                    //debugger;
+                    this.findUser();
+                })
+                .catch(err => {
+                    console.log("Hello: Inside 'handleSubmit.catch'")
+                    console.log(err);
+                });
+        } catch {
+            console.log("API not working");
+        }
     };
 
     findUser = () => {
@@ -129,7 +137,7 @@ class Suggest extends Component {
         if (this.state.traitList[1].trim() === testName) {
             console.log("yessir");
         } else {
-            console.log( "no sir " + testName.indexOf(this.state.traitList[1]));
+            console.log("no sir " + testName.indexOf(this.state.traitList[1]));
         }
 
         for (var i in this.state.userList) {
@@ -155,17 +163,17 @@ class Suggest extends Component {
         let newList = this.state.userToPrint;
         console.log(this.state.userToPrint[2]);
         return (
-        <div>
-            <h1 class="test"> Get Suggested Users</h1>
-            <h2 class="headingTwo">Looking to travel with someone? Press the button below to find similar users and shoot them an email!</h2>
-            <button class="btn-primary" onClick={this.handleSubmit}>get users</button>
-            <p class="headingTwo"> Here is a list of similar users:  </p>
             <div>
-                {newList.map(function (u, idx) {
-                    return (<p class="smaller" key={idx}>{u}</p>)
-                })}
-            </div>
-        </div>)
+                <h1 class="test"> Get Suggested Users</h1>
+                <h2 class="headingTwo">Looking to travel with someone? Press the button below to find similar users and shoot them an email!</h2>
+                <button class="btn-primary" onClick={this.handleSubmit}>get users</button>
+                <p class="headingTwo"> Here is a list of similar users:  </p>
+                <div>
+                    {newList.map(function (u, idx) {
+                        return (<p class="smaller" key={idx}>{u}</p>)
+                    })}
+                </div>
+            </div>)
     }
 
 }

@@ -29,7 +29,7 @@ class Login extends Component {
             <div>
                 <p class="smaller">Hi!</p>
             </div>;
-        this.setState({testRes: start});
+        this.setState({ testRes: start });
     }
 
     // Implementation of the "callApi" function 
@@ -77,59 +77,64 @@ class Login extends Component {
         //this.callApi()
 
         // determine if logged in or not
-        if (!this.state.isLoggedin) {
-            var submitUrl = "http://ec2-13-56-181-190.us-west-1.compute.amazonaws.com:3000/api/login";
+        try {
+            if (!this.state.isLoggedin) {
+                var submitUrl = "http://ec2-13-56-181-190.us-west-1.compute.amazonaws.com:3000/api/login";
 
-            var data = {
-                post: this.state.post,
-                pass: this.state.pass,
-                first_name: this.state.first_name,
-                last_name: this.state.last_name,
-                age: this.state.age,
-                trait: this.state.trait
-            };
+                var data = {
+                    post: this.state.post,
+                    pass: this.state.pass,
+                    first_name: this.state.first_name,
+                    last_name: this.state.last_name,
+                    age: this.state.age,
+                    trait: this.state.trait
+                };
 
-            const response = await fetch(submitUrl, {
-                method: 'POST',
+                const response = await fetch(submitUrl, {
+                    method: 'POST',
 
-                // need these headers for post
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                    // need these headers for post
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
 
-                // thing entered in the form
-                body: JSON.stringify(data)
-            });
+                    // thing entered in the form
+                    body: JSON.stringify(data)
+                });
 
-            //const body = await response.text();
+                //const body = await response.text();
 
-            console.log(this.state.pass);
+                console.log(this.state.pass);
 
-            let thing =
-                <div>
-                    <p>Success!</p>
-                </div>
+                let thing =
+                    <div>
+                        <p>Success!</p>
+                    </div>
 
-            this.setState({ success: thing });
+                this.setState({ success: thing });
 
-            //this.setState({ responseToPost: body });
-            //this.props.isLoggedin = true;
-            this.setState({ isLoggedin: true });
-            //this.getInfo();
-            this.setState({ currentUser: this.state.post });
-            console.log("states " + this.state.post + this.state.isLoggedin);
-            //this.props.name = this.state.email;
-            console.log(this.props.name);
-            //  this.props.setName("sammi");
-            // console.log("new" + this.props.name);
-            this.testLocal();
-        } else {
-            let thing =
-                <div>
-                    <p>You are already logged in!</p>
-                </div>
+                //this.setState({ responseToPost: body });
+                //this.props.isLoggedin = true;
+                this.setState({ isLoggedin: true });
+                //this.getInfo();
+                this.setState({ currentUser: this.state.post });
+                console.log("states " + this.state.post + this.state.isLoggedin);
+                //this.props.name = this.state.email;
+                console.log(this.props.name);
+                //  this.props.setName("sammi");
+                // console.log("new" + this.props.name);
+                this.testLocal();
+            } else {
+                let thing =
+                    <div>
+                        <p>You are already logged in!</p>
+                    </div>
 
-            this.setState({ success: thing });
+                this.setState({ success: thing });
+            }
+
+        } catch {
+            console.log("API not working");
         }
 
     };
